@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Let's Shop</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+		  <h1 class="display-4">Shopping List</h1>
+		  <p class="lead">This app allows you to add and delete items you need to buy</p>
+		</div>
+
+<!-- div to display the items in the shopping list -->
+		<div class="currentItems"></div>
+
+
+
+	</div>
+
+
+
+
+<script type="text/javascript">
+
+$.get("/api/all", function(data){
+	//our unordered list element
+	var list = $("<ul>");
+	var id = 1;
+	//for loop to loop through returned items from db/data file and display as <li>
+	for (var i = 0; i < data.length; i++){		
+		console.log(data[i]);
+		var item = data[i];		
+		var li = $("<li>").text(item);
+		$("li").attr("id", id);
+		list.append(li);
+		$(".currentItems").append(list);
+		id++;
+		console.log(id);
+	}
+
+});
+
+
+</script>
+
+
+</body>
+</html>
